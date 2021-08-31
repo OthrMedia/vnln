@@ -1,0 +1,105 @@
+---
+title: '#VNLN'
+author: "Compiled by Zintle"
+date: "31/08/2021"
+output: 
+  flexdashboard::flex_dashboard:
+runtime: shiny
+---
+
+```{r include=FALSE}
+library(flexdashboard)
+library(dplyr)
+library(readxl)
+library(here)
+library(reshape2)
+library(magrittr)
+library(tidyverse)
+
+# data visualization
+library(ggplot2)
+library(plotly)
+library(igraph)
+library(ggraph)
+library(ggpubr)
+library(cowplot)
+library(wordcloud)
+library(networkD3)
+library(DT)
+library(png)
+
+# text cleaning
+library(tm)
+library(widyr)
+library(tidyr)
+library(textdata)
+library(tidytext)
+library(stringr)
+library(textstem)
+
+source("~/Othr.creatives/SNE/S.N.E/#VNLN_socials.R", local = knitr::knit_global())
+```
+
+Performance
+=====================================
+
+Row {data-width=350}
+--------------------
+
+ANALYSIS FOR WEEK 1
+
+### {.value-box}
+
+```{r echo=FALSE}
+valueBox(3, icon='fa-video', color = '#868d99')
+```
+
+### {.value-box}
+
+```{r echo=FALSE}
+valueBox(sum(sum_likes$total_views), icon='fa-eye', color = '#868d99')
+```
+
+### {.value-box}
+
+```{r echo=FALSE}
+valueBox(sum(sum_likes$total_likes), icon = 'fa-thumbs-up', color = '#868d99')
+```
+
+Column
+--------------------------------------------------
+
+### Views
+
+```{r echo=FALSE, fig.width=6}
+ggplotly(views, tooltip = 'playCount')
+```
+
+Column
+--------------------------------------------------
+### Likes
+
+```{r echo=FALSE}
+ggplotly(likes, tooltip = 'diggCount')
+```
+Comments
+=====================================
+
+Column {.data-width=250}
+--------------------------------------------------
+### Emojis
+
+```{r echo=FALSE, fig.width=4}
+ggplotly(counts, tooltip = 'count')
+```
+
+Column
+--------------------------------------------------
+### Comments
+
+```{r echo=FALSE}
+```
+
+```{r echo=FALSE}
+plot_network
+```
